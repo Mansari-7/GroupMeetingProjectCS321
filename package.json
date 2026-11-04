@@ -1,0 +1,16 @@
+{
+  "name": "study-group-finder-app",
+  "version": "1.0.0",
+	"type": "module",
+  "scripts": {
+		"dev": "vite"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.2.1",
+    "vite": "^8.3.5"
+  }
+}
