@@ -19,8 +19,8 @@ If you do not have node.js installed, you can either:
 - Download Node.js directly from: https://nodejs.org.
 - Use a software management tool, such as Chocolatey for Windows or Brew for MacOS, and running one of the following commands:
 ```bash
-choco install node <!-- This is for Windows -->
-brew install node <!-- This is for MacOS -->
+choco install node # This is for Windows
+brew install node # This is for MacOS
 ```
 
 **2. Clone this repository**
