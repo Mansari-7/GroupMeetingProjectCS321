@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pixelify+Sans:wght@500;600;700&display=swap");
 @import "tailwindcss";
 
-.font-pixel {
-	font-family: "Pixelify Sans";
+@theme inline {
+  --font-pixel: "Pixelify Sans", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
 }
 
 * {
@@ -20,7 +21,7 @@ body {
 
 .app {
   width: 292px;
-  height: 430px;
+  /*height: 430px;*/
   padding: 16px;
   overflow: hidden;
 
