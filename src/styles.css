@@ -20,7 +20,7 @@ body {
 
 .app {
   width: 292px;
-  height: 430px;
+  min-height: 430px;
   padding: 16px;
   overflow: hidden;
 
