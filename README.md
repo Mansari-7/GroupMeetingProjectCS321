@@ -1,5 +1,5 @@
 
-# Study Group Finder
+# Study Room Finder
 
 The system displays a list of relevant study session results and then the user can manually join that study session.
 
