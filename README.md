@@ -4,7 +4,7 @@
 The system displays a list of relevant study session results and then the user can manually join that study session.
 
 ## Demo
-<img width="730" height="1420" alt="studyroomfinderdemo" src="https://github.com/user-attachments/assets/243fee55-a6a8-4963-9f8e-86aa1c0aa3b5" />
+<img height="710" alt="studyroomfinderdemo" src="https://github.com/user-attachments/assets/243fee55-a6a8-4963-9f8e-86aa1c0aa3b5" />
 
 ## Installation
 
