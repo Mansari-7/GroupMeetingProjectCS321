@@ -8,6 +8,10 @@
   --font-sans: "DM Sans", sans-serif;
 }
 
+p {
+	@apply text-[10px];
+}
+
 .best-match {
 	@apply border border-[#5c8c2d]
 		bg-[#dff2a5] px-1.5 py-0.5
@@ -17,7 +21,7 @@
 .join-button {
 	@apply border border-[#164f91]
 		bg-[#2878c5] px-5 py-2
-		text-sm font-extrabold text-white
+		text-sm font-pixel font-extrabold text-white
 		hover:bg-[#3185d2]
 		active:translate-y-px active:shadow-none;
 
