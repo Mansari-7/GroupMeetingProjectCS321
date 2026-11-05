@@ -1,4 +1,5 @@
 import windowsXP from './assets/windowsxp.gif'
+import ResultsDisplay from './ResultsDisplay.jsx';
 
 export default function app() {
   return (
@@ -8,6 +9,7 @@ export default function app() {
 			<h2 class="font-pixel">Pointers &amp; Pastries</h2>
 			<span class="border border-[#5c8c2d] bg-[#dff2a5] px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wide text-[#315510]">Best match</span>
 			<img src={windowsXP} alt=""></img>
+      <ResultsDisplay />
     </div>
   );
 }
