@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GroupDetails from "./GroupDetails.jsx";
 
-// Placeholder data. Replace with real data from your backend/profile matching later.
+// Placeholder data
 const GROUPS = [
   {
     id: 1,
@@ -31,7 +31,7 @@ const GROUPS = [
     location: "Johnson Center",
     compatibility: 64,
     capacity: 4,
-    members: ["Jo Kim", "Raj Singh", "Tess Wu", "Omar Ali"], // full on purpose, to show that state
+    members: ["Jo Kim", "Raj Singh", "Tess Wu", "Omar Ali"],
   },
 ];
 
@@ -58,16 +58,21 @@ export default function ResultsDisplay() {
       {GROUPS.map((group) => {
         const joined = joinedIds.includes(group.id);
         return (
-          <article key={group.id} className="group-card">
-            <h3 className="group-card__title">{group.name}</h3>
+          <article
+            key={group.id}
+            className="mt-3 rounded-lg border border-gray-300 bg-white p-4 shadow-sm"
+          >
+            <h3 className="text-lg font-bold text-gray-900">{group.name}</h3>
             <p>Meeting Time: {group.time}</p>
             <p>Location: {group.location}</p>
             <p>Compatibility: {group.compatibility}%</p>
-            {joined && <p className="group-card__joined">Joined</p>}
+            {joined && (
+              <p className="mt-1 text-sm font-semibold text-[#315510]">Joined</p>
+            )}
             <button
               type="button"
               onClick={() => setSelectedId(group.id)}
-              className="btn btn--primary"
+              className="mt-3 rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700"
             >
               View details
             </button>
