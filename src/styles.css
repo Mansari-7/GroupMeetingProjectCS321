@@ -1,11 +1,12 @@
 /*Import fonts here*/
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pixelify+Sans:wght@500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Geist+Pixel&family=Londrina+Shadow&family=Londrina+Solid:wght@100;300;400;900&family=Rampart+One&display=swap');
 
 @import "tailwindcss";
 
 @theme inline {
   --font-pixel: "Pixelify Sans", sans-serif;
-  --font-sans: "DM Sans", sans-serif;
+	--font-sans: "Geist Pixel", sans-serif;
 }
 
 p {
@@ -20,8 +21,8 @@ p {
 
 .join-button {
 	@apply border border-[#164f91]
-		bg-[#2878c5] px-5 py-2
-		text-sm font-pixel font-extrabold text-white
+		bg-[#2878c5] px-2.5 py-2
+		text-xs font-pixel font-extrabold text-white
 		hover:bg-[#3185d2]
 		active:translate-y-px active:shadow-none;
 
@@ -49,8 +50,6 @@ body {
 }
 
 .app {
-  width: 292px;
-  /*height: 430px;*/
   padding: 16px;
   overflow: hidden;
 
