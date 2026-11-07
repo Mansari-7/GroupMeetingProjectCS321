@@ -13,7 +13,7 @@ p {
 	@apply text-[10px];
 }
 
-.best-match {
+.tag {
 	@apply border border-[#5c8c2d]
 		bg-[#dff2a5] px-1.5 py-0.5
 		text-[10px] font-extrabold uppercase tracking-wide text-[#315510];
@@ -30,10 +30,6 @@ p {
 		inset 1px 1px 0 #70b8ee,
 		inset -2px -2px 0 #11559a,
 		2px 2px 0 rgba(24,50,74,.2);
-}
-
-.join-button:active {
-	box-shadow:none
 }
 
 * {

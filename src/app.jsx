@@ -1,6 +1,5 @@
 //Import Assets
 import windowsXP from './assets/windowsxp.gif';
-import searchIcon from './assets/searchicon.png';
 import { useState } from "react";
 
 export default function app() {
@@ -16,9 +15,8 @@ export default function app() {
 function Topbar() {
 	return (
 		<article>
-			<div className="flex w-full h-8 bg-[rgb(162,199,83)] border-b p-1">
-				<img src={searchIcon} className="w-6 h-6"></img>
-				<h1 className="font-pixel font-extrabold">Study Session Finder</h1>
+			<div className="w-full h-8 bg-[rgb(162,199,83)] p-1">
+				<h1 className="font-pixel font-extrabold">📚 Study Session Finder</h1>
 			</div>
 			<div className="flex relative">
 				<img src={windowsXP} className="w-full h-20 object-cover object-center mx-auto"></img>
@@ -37,38 +35,21 @@ function SessionResult() {
   return (
     <article className="border rounded-sm bg-[rgb(248,255,216)]">
 			<div className="flex">
-				{/* Icon */}
-				<div className="flex items-center">
-					<div class="grid size-8 ml-2 place-items-center border border-[#7791a9] bg-[#d9efff] shadow-[inset_2px_2px_0_#fff,inset_-2px_-2px_0_#a6c7df]">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-[#1769aa]">
-							<path d="M12 7v14"/>
-							<path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>
-						</svg>
-					</div>
-				</div>
 				{/* Session Title */}
 				<div className="p-2">
 					<h1 className="font-extrabold">CS 321 Study Mania</h1>
 					<div>
 						<span className="flex gap-1">
-							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<circle cx="12" cy="12" r="10"/>
-								<polyline points="12 6 12 12 16.5 12"/>
-							</svg>
-							<p>Wednesday, 3:00 PM</p>
+							<p>⏱︎ Wednesday, 3:00 PM</p>
 						</span>
 						<span className="flex gap-1">
-							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
-								<circle cx="12" cy="10" r="3"/>
-							</svg>
-							<p>Fenwick Library</p>
+							<p>🌐︎ Fenwick Library</p>
 						</span>
 					</div>
 				</div>
 
 				{/* Compatibility Score and Join Button */}
-				<div class="flex flex-col ml-auto mr-2 gap-1">
+				<div className="flex flex-col ml-auto mr-2 gap-1">
 					<p className="ml-auto mt-2">95% Match</p>
 					<button onClick={() => setJoined(true)}
 					className="join-button">
