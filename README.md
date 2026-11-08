@@ -4,7 +4,7 @@
 Students input their preferences, such as courses, availability, length, etc. Students are shown results of relevant study sessions where the user can view the details and manually join that study session.
 
 ## Demo
-<img className="w-full" alt="studysessionfinderdemo" src="./public/studysessionfinderdemo.gif" />
+<img className="w-full" alt="studysessionfinderdemo" src="./public/studysessionfinderdemo.png" />
 
 ## Installation
 

@@ -9,6 +9,24 @@
 	--font-sans: "Geist Pixel", sans-serif;
 }
 
+.sidenav {
+	@apply px-2 mb-2 mt-1
+		text-sm
+}
+
+.sidenav select {
+	@apply border border-[#414141]
+		bg-[#5c5c5c] px-2.5 py-1.5
+		text-xs text-[#b0b0b0]
+		hover:text-[#f1f1f1]
+		active:translate-y-px active:shadow-none;
+
+	box-shadow:
+		inset 1px 1px 0 #9e9e9e,
+		inset -2px -2px 0 #5b5b5b,
+		2px 2px 0 rgba(24,50,74,.2);
+}
+
 p {
 	@apply text-[10px];
 }
@@ -19,7 +37,7 @@ p {
 		text-[10px] font-extrabold uppercase tracking-wide text-[#315510];
 }
 
-.join-button {
+.blue-button {
 	@apply border border-[#164f91]
 		bg-[#2878c5] px-2.5 py-2
 		text-xs font-pixel font-extrabold text-white
