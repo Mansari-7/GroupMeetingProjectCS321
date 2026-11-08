@@ -1,4 +1,4 @@
-import windowsXP from './assets/windowsxp.gif'
+import windowsXP from '../assets/windowsxp.gif'
 
 export default function TopBar() {
 	return (

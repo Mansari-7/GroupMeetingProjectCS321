@@ -1,13 +1,13 @@
-import SideBar from './SideBar.jsx';
-import TopBar from './TopBar.jsx'
-import ResultsDisplay from './ResultsDisplay.jsx';
+import {PreferencesBar, ResultsDisplay, TopBar} from './components';
 
 export default function app() {
   return (
-    <div className="app">
-      <SideBar />
+		<div className="app flex flex-col gap-4">
       <TopBar />
-      <ResultsDisplay />
+			<div className="flex">
+				<PreferencesBar />
+      	<ResultsDisplay />
+			</div>
     </div>
   );
 }

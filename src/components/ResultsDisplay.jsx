@@ -1,5 +1,4 @@
 import { useState } from "react";
-import GroupDetails from "./GroupDetails.jsx";
 
 // Placeholder data
 const GROUPS = [
@@ -42,37 +41,41 @@ const GROUPS = [
 ];
 
 export default function ResultsDisplay() {
-  const [selectedId, setSelectedId] = useState(null);
-  const [joinedIds, setJoinedIds] = useState([]);
+  const [groups, setGroups] = useState(GROUPS);
+	const [joinedIds, setJoinedIds] = useState([]);
 
-  const selected = GROUPS.find((g) => g.id === selectedId);
+	const handleJoin = (id) => {
+		const updatedGroups = groups.map((group) => {
+			if (group.id !== id) return group;
 
-  if (selected) {
-    return (
-      <GroupDetails
-        group={selected}
-        joined={joinedIds.includes(selected.id)}
-        onBack={() => setSelectedId(null)}
-        onConfirm={() => setJoinedIds((ids) => [...ids, selected.id])}
-      />
-    );
-  }
+			const newMembers = [...group.members, "You"];
+			return { ...group, members: newMembers };
+		});
+
+		setGroups(updatedGroups);
+		setJoinedIds([...joinedIds, id]);
+	};
 
   return (
     <section className="flex flex-col gap-2">
-      {GROUPS.map((group) => (
+			<span className="w-full items-end">
+				<p className="px-2 font-bold">Results shown below.</p>
+			</span>
+      {groups.map((group) => (
         <SessionResult
           key={group.id}
           group={group}
-          joined={joinedIds.includes(group.id)}
-          onViewDetails={() => setSelectedId(group.id)}
+					joined={joinedIds.includes(group.id)}
+          onJoin={() => handleJoin(group.id)}
         />
       ))}
     </section>
   );
 }
 
-function SessionResult({ group, joined, onViewDetails }) {
+function SessionResult({ group, joined, onJoin }) {
+	const isFull = group.members.length >= group.capacity;
+
   return (
     <article className="border rounded-sm bg-[rgb(248,255,216)]">
       <div className="flex">
@@ -89,19 +92,22 @@ function SessionResult({ group, joined, onViewDetails }) {
           </div>
         </div>
 
-        {/* Compatibility Score and View Details Button */}
+        {/* Compatibility Score and Join Button */}
         <div className="flex flex-col ml-auto mr-2 gap-1">
           <p className="ml-auto mt-2">{group.compatibility}% Match</p>
-          <button
-            type="button"
-            onClick={onViewDetails}
-            className="details-button"
-          >
-            View details
-          </button>
-          {joined && (
+
+          {joined ? (
             <p className="ml-auto text-sm font-semibold text-[#315510]">✔ Joined</p>
-          )}
+          ) : (
+						<button
+							type="button"
+							onClick={onJoin}
+							className={isFull ? "full-button" : "join-button"}
+							disabled={isFull}
+						>
+							{isFull ? "Full": "Join"}
+						</button>
+					)}
         </div>
       </div>
 
