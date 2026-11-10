@@ -1,10 +1,10 @@
 
-# Study Room Finder
+# Study Session Finder
 
 The system displays a list of relevant study session results and then the user can manually join that study session.
 
 ## Demo
-<img height="710" alt="studyroomfinderdemo" src="https://github.com/user-attachments/assets/243fee55-a6a8-4963-9f8e-86aa1c0aa3b5" />
+<img className="w-full" alt="studyroomfinderdemo" src="./public/studysessionfinder_demo.gif" />
 
 ## Installation
 

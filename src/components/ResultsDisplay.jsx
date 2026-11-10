@@ -57,7 +57,7 @@ export default function ResultsDisplay() {
 	};
 
   return (
-    <section className="flex flex-col gap-2">
+    <main className="flex flex-col gap-2">
 			<span className="w-full items-end">
 				<p className="px-2 font-bold">Results shown below.</p>
 			</span>
@@ -69,7 +69,7 @@ export default function ResultsDisplay() {
           onJoin={() => handleJoin(group.id)}
         />
       ))}
-    </section>
+    </main>
   );
 }
 
