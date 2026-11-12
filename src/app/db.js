@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS SESSION_RESULT (
 	StudyStyle TEXT,
 
 	Capacity INTEGER,
-	CurrentSize INTEGER,
 
 	PRIMARY KEY (SessionID)
 );
