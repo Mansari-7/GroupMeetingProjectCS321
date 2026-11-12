@@ -34,4 +34,29 @@ CREATE TABLE IF NOT EXISTS SESSION_TOPICS (
 	PRIMARY KEY (SessionID, TopicName),
 	FOREIGN KEY (SessionID) REFERENCES SESSION_RESULT (SessionID) ON DELETE CASCADE
 );
+
+INSERT OR IGNORE INTO SESSION_RESULT
+  (SessionID, SessionTitle, MeetingTime, Location, CourseName, StudyStyle, Capacity)
+VALUES
+  (1, 'CS 321 Study Group',  'Wednesday, 3:00 PM', 'Fenwick Library', 'CS 321', 'Casual',       6),
+  (2, 'CS 310 Midterm Prep', 'Tuesday, 3:00 PM',   'Horizon Hall',    'CS 310', 'Focused',      5),
+  (3, 'CS 367 Project Club', 'Thursday, 4:30 PM',  'Johnson Center',  'CS 367', 'Project work', 4);
+
+INSERT OR IGNORE INTO SESSION_MEMBER (SessionID, MemberName) VALUES
+  (1, 'Ana Torres'),
+  (1, 'Ben Okafor'),
+  (1, 'Sam Patel'),
+  (1, 'Lee Nguyen'),
+  (2, 'Dana Cruz'),
+  (2, 'Eli Brooks'),
+  (2, 'Maya Chen'),
+  (3, 'Jo Kim'),
+  (3, 'Raj Singh'),
+  (3, 'Tess Wu'),
+  (3, 'Omar Ali');
+
+INSERT OR IGNORE INTO SESSION_TOPICS (SessionID, TopicName) VALUES
+  (1, 'Dynamic Dispatch'),
+  (2, 'Hash Tables'),
+  (3, 'Memory Management');
 	`);
