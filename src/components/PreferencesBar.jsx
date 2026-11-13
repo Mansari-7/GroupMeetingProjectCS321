@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 
-export default function PreferencesBar() {
+export default function PreferencesBar({ onSearch }) {
   const [preferences, setPreferences] = useState({
     Capacity: "",
     Location: "",
@@ -22,7 +22,7 @@ export default function PreferencesBar() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Submitted preferences:", preferences);
+    onSearch(preferences);
   }
 
   return (

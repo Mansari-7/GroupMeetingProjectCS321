@@ -174,8 +174,24 @@ export function searchGroups(preferences)
     {
         group.members = findMembers.all(group.SessionID);
     }
+    //find more information
+    const findTopics = db.prepare(`SELECT TopicName FROM SESSION_TOPIC WHERE SessionID = ?`);
 
+    return groupies.map((group) => {
+        const topics = findTopics.all(group.SessionID);
     //return everything
-    return groupies;
+    return {
+        id: group.SessionID,
+        name:group.SessionTitle,
+        Course:group.Course,
+        time:group.MeetingTime,
+        Location:group.Location,
+        compatability:group.Capacity,
+        members:group.members.map((member) => member.MemberName),
+        style:group.StudyStyle,
+        topics: topics.map((topic) => topic.TopicName),
+    };
+
+    });
 }
 
