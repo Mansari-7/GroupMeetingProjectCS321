@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS SESSION_TOPIC (
 INSERT OR IGNORE INTO SESSION_RESULT
   (SessionID, SessionTitle, MeetingTime, Location, CourseName, StudyStyle, Capacity)
 VALUES
-  (1, 'CS 321 Study Group',  'Wednesday, 3:00 PM', 'Fenwick Library', 'CS 321', 'Casual',       6),
-  (2, 'CS 310 Midterm Prep', 'Tuesday, 3:00 PM',   'Horizon Hall',    'CS 310', 'Focused',      5),
-  (3, 'CS 367 Project Club', 'Thursday, 4:30 PM',  'Johnson Center',  'CS 367', 'Project work', 4);
+  (1, 'CS 321 Study Group',   '2026-11-18 15:00', 'Fenwick Library', 'CS 321', 'Casual',       6),
+  (2, 'CS 310 Midterm Prep',  '2026-11-17 15:00', 'Horizon Hall',    'CS 310', 'Focused',      5),
+  (3, 'CS 367 Project Club',  '2026-11-19 16:30', 'Johnson Center',  'CS 367', 'Project work', 4);
 
 INSERT OR IGNORE INTO SESSION_MEMBER (SessionID, MemberName) VALUES
   (1, 'Ana Torres'),
