@@ -5,10 +5,10 @@ import { useState } from "react";
 
 export default function PreferencesBar() {
   const [preferences, setPreferences] = useState({
-    Capacity: "5 or more",
-    Location: "In Person",
-    Courses: "CS330",
-    MeetingTime: "3:30",
+    Capacity: "",
+    Location: "",
+    Courses: "",
+    MeetingTime: "",
   });
 
   function handleChange(event) {
@@ -52,7 +52,9 @@ export default function PreferencesBar() {
             value={preferences.Location}
             onChange={handleChange}
           >
-            <option value="In Person">In person</option>
+            <option value="Fenwick Library">In person</option>
+            <option value="Horizon Hall">In person</option>
+            <option value="Johnson Center">In person</option>
             <option value="Online">Online</option>
           </select>
 
@@ -63,26 +65,21 @@ export default function PreferencesBar() {
             value={preferences.Courses}
             onChange={handleChange}
           >
-            <option value="CS330">CS330</option>
-            <option value="CS321">CS321</option>
-            <option value="PHYS106">PHYS106</option>
-            <option value="ECE301">ECE301</option>
-            <option value="CS310">CS310</option>
+            <option value="CS 330">CS330</option>
+            <option value="CS 321">CS321</option>
+            <option value="PHYS 106">PHYS106</option>
+            <option value="ECE 301">ECE301</option>
+            <option value="CS 310">CS310</option>
           </select>
 
-          <label htmlFor="MeetingTime">Meeting Time</label>
-          <select
+          <label htmlFor="MeetingTime">MeetingTime</label>
+          <input
+            type="datetime-local"
             name="MeetingTime"
             id="MeetingTime"
             value={preferences.MeetingTime}
             onChange={handleChange}
-          >
-            <option value="3:30">3:30</option>
-            <option value="4:30">4:30</option>
-            <option value="5:30">5:30</option>
-            <option value="6:30">6:30</option>
-            <option value="7:30">7:30</option>
-          </select>
+          />
         </section>
 
         <section className="px-2 mt-2 mb-3">
