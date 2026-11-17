@@ -1,50 +1,11 @@
+"use client";
 import { useState } from "react";
 
-// Placeholder data
-const GROUPS = [
-  {
-    id: 1,
-    name: "CS 321 Study Group",
-    course: "CS 321",
-    time: "Wednesday, 3:00 PM",
-    location: "Fenwick Library",
-    compatibility: 95,
-    capacity: 6,
-    members: ["Ana Torres", "Ben Okafor", "Sam Patel", "Lee Nguyen"],
-    style: "Casual",
-    topics: "Dynamic Dispatch",
-  },
-  {
-    id: 2,
-    name: "CS 310 Midterm Prep",
-    course: "CS 310",
-    time: "Tuesday, 3:00 PM",
-    location: "Horizon Hall",
-    compatibility: 82,
-    capacity: 5,
-    members: ["Dana Cruz", "Eli Brooks", "Maya Chen"],
-    style: "Focused",
-    topics: "Hash Tables",
-  },
-  {
-    id: 3,
-    name: "CS 367 Project Club",
-    course: "CS 367",
-    time: "Thursday, 4:30 PM",
-    location: "Johnson Center",
-    compatibility: 64,
-    capacity: 4,
-    members: ["Jo Kim", "Raj Singh", "Tess Wu", "Omar Ali"],
-    style: "Project work",
-    topics: "Memory Management",
-  },
-];
-
-export default function ResultsDisplay() {
-  const [groups, setGroups] = useState(GROUPS);
+export default function ResultsDisplay({groups, setGroups}) {
 	const [joinedIds, setJoinedIds] = useState([]);
 
 	const handleJoin = (id) => {
+		console.log('handled join');
 		const updatedGroups = groups.map((group) => {
 			if (group.id !== id) return group;
 
@@ -61,6 +22,7 @@ export default function ResultsDisplay() {
 			<span className="w-full items-end">
 				<p className="px-2 font-bold">Results shown below.</p>
 			</span>
+      {groups.length === 0 && <p>No matching study groups found.</p>}
       {groups.map((group) => (
         <SessionResult
           key={group.id}
