@@ -1,7 +1,11 @@
-
 # Study Session Finder
 
 The system displays a list of relevant study session results and then the user can manually join that study session.
+
+The app is split into two parts that talk over HTTP:
+
+- `frontend/` is the React app. It sends preference filters to `POST /api/search` and joins a session with `POST /api/sessions/:id/join`.
+- `backend/` is the API and SQLite database. Search results use `id`, `name`, `course`, `time`, `location`, `capacity`, `members`, `style`, `topics`, and `compatibility`.
 
 ## Demo
 <img className="w-full" alt="studyroomfinderdemo" src="./public/studysessionfinder_demo.gif" />
@@ -35,19 +39,22 @@ git clone https://github.com/Mansari-7/GroupMeetingProjectCS321.git
 **3. Install Dependencies**
 ```bash
 npm install
+npm install --prefix backend
+npm install --prefix frontend
 ```
+
 ## Deployment
 
-To deploy this project, open the project on your local computer and run the following command:
+From the project root, start the API and the web app together:
 
 ```bash
 npm run dev
 ```
-To terminate the program, simply use ```Ctrl+C``` or another termination command to exit the program.
-## Next Steps
 
-- Modify ```app.jsx``` to build app layout
-- Style app UI in ```styles.css```
+The API listens on [http://localhost:3001](http://localhost:3001). The web app is at [http://localhost:5173](http://localhost:5173) and proxies `/api` to the backend.
+
+To terminate the program, use ```Ctrl+C```.
+
 ## Project Credits
 
 - [Mahad Ansari](https://github.com/Mansari-7)
@@ -55,40 +62,3 @@ To terminate the program, simply use ```Ctrl+C``` or another termination command
 - [Ryan Anderson](https://github.com/randerson112)
 - [Brian Le](https://github.com/relbian)
 - [Sulabh Pant](https://github.com/Sulabh192)
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

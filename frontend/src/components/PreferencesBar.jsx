@@ -1,14 +1,14 @@
-"use client";
-
 import { useState } from "react";
 
+const initialPreferences = {
+  Capacity: "5 or more",
+  Location: "In person",
+  Courses: "CS 321",
+  MeetingTime: "2026-11-18T15:00",
+};
+
 export default function PreferencesBar({ onSearch }) {
-  const [preferences, setPreferences] = useState({
-    Capacity: "",
-    Location: "",
-    Courses: "",
-    MeetingTime: "",
-  });
+  const [preferences, setPreferences] = useState(initialPreferences);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -51,9 +51,7 @@ export default function PreferencesBar({ onSearch }) {
             value={preferences.Location}
             onChange={handleChange}
           >
-            <option value="Fenwick Library">In person</option>
-            <option value="Horizon Hall">In person</option>
-            <option value="Johnson Center">In person</option>
+            <option value="In person">In person</option>
             <option value="Online">Online</option>
           </select>
 
@@ -69,6 +67,7 @@ export default function PreferencesBar({ onSearch }) {
             <option value="PHYS 106">PHYS106</option>
             <option value="ECE 301">ECE301</option>
             <option value="CS 310">CS310</option>
+            <option value="CS 367">CS367</option>
           </select>
 
           <label htmlFor="MeetingTime">MeetingTime</label>
@@ -78,6 +77,7 @@ export default function PreferencesBar({ onSearch }) {
             id="MeetingTime"
             value={preferences.MeetingTime}
             onChange={handleChange}
+            required
           />
         </section>
 

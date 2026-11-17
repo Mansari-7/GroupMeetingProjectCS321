@@ -1,5 +1,12 @@
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import Database from "better-sqlite3";
-export const db = new Database("app.db");
+
+const dataDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "data");
+fs.mkdirSync(dataDir, { recursive: true });
+
+export const db = new Database(path.join(dataDir, "app.db"));
 
 db.pragma("foreign_keys = ON");
 

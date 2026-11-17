@@ -1,39 +1,13 @@
 {
   "name": "study-group-finder-app",
   "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.3.4",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "tailwindcss": "^4.3.4"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^6.2.1",
-    "vite": "^8.3.5"
-  }
-
-  "name": "newnext",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "better-sqlite3": "^13.0.3",
-    "geist": "^1.9.2",
-    "next": "16.4.5",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend"
   },
   "devDependencies": {
-    "@tailwindcss/turbopack": "^4",
-    "tailwindcss": "^4"
-  },
-  "packageManager": "pnpm@12.18.0"
+    "concurrently": "^9.2.1"
+  }
 }
