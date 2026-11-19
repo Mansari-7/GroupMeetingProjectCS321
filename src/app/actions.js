@@ -3,7 +3,6 @@ import { db } from "@/app/db";
 
 export async function getSessions(prefs) {
 	// Score out of 100: course 40, capacity 20, location 20, time 20.
-	// Sessions with a score of 0 are treated as "not found".
 	const rows = db.prepare(`
 		SELECT
 			SessionID, SessionTitle, MeetingTime, Location, CourseName, StudyStyle, Capacity,
@@ -17,18 +16,18 @@ export async function getSessions(prefs) {
 				+ CASE WHEN (@location = 'Online' AND Location = 'Online')
 										OR (@location = 'In Person' AND Location != 'Online')
 										OR (@location = '') THEN 20 ELSE 0 END
-				+ CASE WHEN CAST(substr(MeetingTime, 12, 2) AS INTEGER) = @hour THEN 20
+				+ CASE WHEN CAST(substr(MeetingTime, 12, 2) AS INTEGER) = @hour
+										OR (@hour = -99) THEN 20
 								WHEN ABS(CAST(substr(MeetingTime, 12, 2) AS INTEGER) - @hour) = 1 THEN 10
 								ELSE 0 END
 			) AS Compatibility
 		FROM SESSION_RESULT
-		WHERE Compatibility > 0
 		ORDER BY Compatibility DESC
 	`).all({
 		course: prefs.course,
 		capacity: Number(prefs.capacity),
 		location: prefs.location,
-		hour: Number(prefs.meetingTime.slice(11, 13))
+		hour: prefs.meetingTime ? Number(prefs.meetingTime.slice(11, 13)) : -99
 	});
 
 	// Build the shape ResultsDisplay expects

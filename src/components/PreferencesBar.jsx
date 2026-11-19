@@ -1,25 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { getSessions } from "@/app/actions";
+//import { useState } from "react";
+//import { getSessions } from "@/app/actions";
 
-export default function PreferencesBar({ onSearch }) {
-  const [preferences, setPreferences] = useState({
-    capacity: "",
-    location: "",
-    course: "",
-    meetingTime: "",
-  });
+export default function PreferencesBar({ preferences }) {
+  //const [preferences, setPreferences] = useState({
+  //  capacity: "",
+  //  location: "",
+  //  course: "",
+  //  meetingTime: "",
+  //});
 
-  async function handleChange(event) {
-    const { name, value } = event.target;
+  //async function handleChange(event) {
+  //  const { name, value } = event.target;
 
-		const newPreferences = {...preferences, [name]: value };
-    setPreferences(newPreferences);
+	//	const newPreferences = {...preferences, [name]: value };
+  //  setPreferences(newPreferences);
 
-		const sessions = await getSessions(newPreferences);
-		onSearch(sessions);
-  }
+	//	const sessions = await getSessions(newPreferences);
+	//	onSearch(sessions);
+  //}
 
   //function handleSubmit(event) {
   //  event.preventDefault();
@@ -34,14 +34,15 @@ export default function PreferencesBar({ onSearch }) {
         <header>Preferences ⚙︎</header>
       </section>
 
-      <form>
+      <form onChange={(e)=>(e.currentTarget.requestSubmit())}>
         <section className="px-2 flex flex-col gap-0.5 mb-4">
           <label htmlFor="capacity">Capacity</label>
           <select
             name="capacity"
             id="capacity"
-            value={preferences.capacity}
-            onChange={handleChange}
+            //value={preferences.capacity}
+            //onChange={handleChange}
+						defaultValue={preferences.capacity}
           >
 						<option value="">Any</option>
             <option value="3">3 or less</option>
@@ -53,13 +54,12 @@ export default function PreferencesBar({ onSearch }) {
           <select
             name="location"
             id="location"
-            value={preferences.location}
-            onChange={handleChange}
+            //value={preferences.location}
+            //onChange={handleChange}
+						defaultValue={preferences.location}
           >
 						<option value="">Any</option>
-            <option value="In Person">Fenwick Library</option>
-            <option value="In Person">Horizon Hall</option>
-            <option value="In Person">Johnson Center</option>
+            <option value="In Person">In Person</option>
             <option value="Online">Online</option>
           </select>
 
@@ -67,8 +67,9 @@ export default function PreferencesBar({ onSearch }) {
           <select
             name="course"
             id="course"
-            value={preferences.course}
-            onChange={handleChange}
+            //value={preferences.course}
+            //onChange={handleChange}
+						defaultValue={preferences.course}
           >
 						<option value="">Any</option>
             <option value="CS 330">CS330</option>
@@ -83,8 +84,9 @@ export default function PreferencesBar({ onSearch }) {
             type="datetime-local"
             name="meetingTime"
             id="meetingTime"
-            value={preferences.meetingTime}
-            onChange={handleChange}
+            //value={preferences.meetingTime}
+            //onChange={handleChange}
+						defaultValue={preferences.meetingTime}
           />
         </section>
 
