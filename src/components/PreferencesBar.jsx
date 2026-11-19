@@ -72,11 +72,26 @@ export default function PreferencesBar({ preferences }) {
 						defaultValue={preferences.course}
           >
 						<option value="">Any</option>
-            <option value="CS 330">CS330</option>
-            <option value="CS 321">CS321</option>
-            <option value="PHYS 106">PHYS106</option>
-            <option value="ECE 301">ECE301</option>
-            <option value="CS 310">CS310</option>
+            <option value="CS 110">CS 110</option>
+            <option value="CS 112">CS 112</option>
+            <option value="CS 211">CS 211</option>
+            <option value="CS 262">CS 262</option>
+            <option value="CS 310">CS 310</option>
+            <option value="CS 321">CS 321</option>
+            <option value="CS 330">CS 330</option>
+            <option value="CS 367">CS 367</option>
+            <option value="CS 471">CS 471</option>
+            <option value="CS 483">CS 483</option>
+            <option value="MATH 113">MATH 113</option>
+            <option value="MATH 114">MATH 114</option>
+            <option value="MATH 125">MATH 125</option>
+            <option value="MATH 203">MATH 203</option>
+            <option value="PHYS 106">PHYS 106</option>
+            <option value="PHYS 160">PHYS 160</option>
+            <option value="ECE 301">ECE 301</option>
+            <option value="ECE 285">ECE 285</option>
+            <option value="STAT 344">STAT 344</option>
+            <option value="IT 104">IT 104</option>
           </select>
 
           <label htmlFor="meetingTime">MeetingTime</label>

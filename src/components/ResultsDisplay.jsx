@@ -21,7 +21,7 @@ export default function ResultsDisplay({ sessions }) {
   }
 
   return (
-    <main className="flex flex-col gap-2">
+    <main className="flex flex-col gap-2 overflow-y-auto h-screen">
       <span className="w-full items-end">
         <p className="px-2 font-bold">Results shown below.</p>
       </span>
