@@ -17,10 +17,10 @@ export async function getSessions(prefs) {
 										OR (@location = 'In Person' AND Location != 'Online')
 										OR (@location = '') THEN 20 ELSE 0 END
 				+ CASE WHEN (CAST(substr(MeetingTime, 12, 2) AS INTEGER) = @hour
-										AND substr(MeetingTime, 1, 11) = @day)
+										AND substr(MeetingTime, 1, 10) = @day)
 										OR (@hour = -99) THEN 20
 									WHEN (ABS(CAST(substr(MeetingTime, 12, 2) AS INTEGER) - @hour) = 1
-										AND substr(MeetingTime, 1, 11) = @day) THEN 10
+										AND substr(MeetingTime, 1, 10) = @day) THEN 10
 									ELSE 0 END
 			) AS Compatibility
 		FROM SESSION_RESULT
