@@ -1,6 +1,6 @@
 import {db} from "./db.js";
 
-export function searchGroups(preferences) 
+export function searchGroups(preferences)
 {
     const {Courses, MeetingTime, Location, Capacity} = preferences;
 
@@ -10,25 +10,25 @@ export function searchGroups(preferences)
     let groups = db.prepare(`
         SELECT * FROM SESSION_RESULT
         WHERE CourseName = ?
-            AND 
+            AND
             (
                 SELECT COUNT(*) FROM SESSION_MEMBER
                 WHERE SESSION_MEMBER.SessionID = SESSION_RESULT.SessionID
-            ) 
+            )
                 < SESSION_RESULT.Capacity
-            AND 
+            AND
             (
                 (? = '3 or less' AND Capacity <= 3)
                 OR (? = '4' AND Capacity = 4)
                 OR (? = '5 or more' AND Capacity >= 5)
             )
-            AND 
+            AND
             (
                 (
                     LOWER(TRIM(?)) = 'online'
                     AND LOWER(TRIM(Location)) = 'online'
                 )
-                OR 
+                OR
                 (
                     LOWER(TRIM(?)) = 'in person'
                     AND TRIM(Location) <> ''
@@ -74,23 +74,23 @@ export function searchGroups(preferences)
 
         let timeScore = 0;
 
-        if (hoursApart <= 1) 
+        if (hoursApart <= 1)
         {
             timeScore = 50;
-        } 
-        else if (hoursApart <= 24) 
+        }
+        else if (hoursApart <= 24)
         {
             timeScore = 40;
-        } 
-        else if (hoursApart <= 72) 
+        }
+        else if (hoursApart <= 72)
         {
             timeScore = 30;
-        } 
-        else if (hoursApart <= 120) 
+        }
+        else if (hoursApart <= 120)
         {
             timeScore = 20;
-        } 
-        else if (hoursApart <= 168) 
+        }
+        else if (hoursApart <= 168)
         {
             timeScore = 10;
         }
@@ -109,15 +109,15 @@ export function searchGroups(preferences)
         if (
             preferredLocation === "online" &&
             groupLocation === "online"
-        ) 
+        )
         {
             locationScore = 30;
-        } 
+        }
         else if (
             preferredLocation === "in person" &&
             groupLocation !== "" &&
             groupLocation !== "online"
-        ) 
+        )
         {
             locationScore = 30;
         }
@@ -125,24 +125,24 @@ export function searchGroups(preferences)
         // Compare maximum group size with the preferred category.
         let capacityScore = 0;
 
-        if (Capacity === "3 or less" && group.Capacity <= 3) 
+        if (Capacity === "3 or less" && group.Capacity <= 3)
         {
             capacityScore = 20;
-        } 
-        else if (Capacity === "4" && group.Capacity === 4) 
+        }
+        else if (Capacity === "4" && group.Capacity === 4)
         {
             capacityScore = 20;
-        } 
+        }
         else if (
             Capacity === "5 or more" &&
             group.Capacity >= 5
-        ) 
+        )
         {
             capacityScore = 20;
         }
 
         const compatibilityScore = timeScore + locationScore + capacityScore;
-        return Object.assign({}, group, 
+        return Object.assign({}, group,
         {
             timeScore,
             locationScore,
@@ -154,7 +154,7 @@ export function searchGroups(preferences)
 
     //sort the groups up, if there is a sort of tie then we compare times
     groupies.sort((a, b) => {
-        if (a.compatibilityScore !== b.compatibilityScore) 
+        if (a.compatibilityScore !== b.compatibilityScore)
         {
             return b.compatibilityScore - a.compatibilityScore;
         }
@@ -162,7 +162,7 @@ export function searchGroups(preferences)
         return a.hoursApart - b.hoursApart;
     });
 
-    // we need to find the people who make up a group 
+    // we need to find the people who make up a group
     const findMembers = db.prepare(`
         SELECT MemberName
         FROM SESSION_MEMBER
@@ -170,7 +170,7 @@ export function searchGroups(preferences)
         ORDER BY MemberName
     `);
 
-    for (const group of groupies) 
+    for (const group of groupies)
     {
         group.members = findMembers.all(group.SessionID);
     }
