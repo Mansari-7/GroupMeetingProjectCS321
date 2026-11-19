@@ -4,9 +4,16 @@
   --font-pixel: var(--font-pixelify), sans-serif;
 	--font-sans: var(--font-geist-pixel-square), sans-serif;
 }
-
+h2
+{
+	font-size: clamp(20px,1.5vw,60px);
+}
+h1
+{
+	font-size: clamp(20px,1.3vw,40px);
+}
 p {
-	@apply text-[10px];
+	font-size: clamp(15px,1.1vw,20px);
 }
 
 .tag {
@@ -16,9 +23,10 @@ p {
 }
 
 .join-button {
+	width: clamp(150px,1vh,800px);
 	@apply border border-[#164f91]
 		bg-[#2878c5] px-2.5 py-2
-		text-xs font-pixel font-extrabold text-white
+		text-base font-pixel font-extrabold text-white
 		hover:bg-[#3185d2]
 		active:translate-y-px active:shadow-none;
 
@@ -30,7 +38,8 @@ p {
 
 .full-button {
 	@apply bg-gray-500 px-2.5 py-2
-		text-xs text-[#b0b0b0] font-pixel font-extrabold;
+		text-base text-[#b0b0b0] font-pixel font-extrabold;
+		width: clamp(150px,1vh,800px);
 }
 
 .apply-button {
@@ -50,6 +59,10 @@ p {
 	@apply max-w-32 h-full
 		bg-[rgb(248,255,216)]
 		text-sm;
+		width: 200px;
+		flex-shrink: 0;
+		position: sticky;
+		top: 16px;
 }
 
 .sidenav select {
@@ -66,12 +79,14 @@ p {
 }
 
 body {
-  place-items: center;
+  margin: 0;
+  min-height: 100vh;
   background: rgb(216,230,156);
 }
 
 .app {
 	@apply bg-[rgb(216,230,156)] p-4
+
 }
 
 /*The cursor changes when the user hovers over an object that can be selected.*/

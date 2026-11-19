@@ -21,7 +21,7 @@ export default function ResultsDisplay({ sessions }) {
   }
 
   return (
-    <main className="flex flex-col gap-2 overflow-y-auto h-screen">
+    <main className="flex w-full min-w-0 flex-col gap-4">
       <span className="w-full items-end">
         <p className="px-2 font-bold">Results shown below.</p>
       </span>
@@ -41,7 +41,7 @@ function SessionResult({ session, joined, onJoin }) {
 	const isFull = session.members.length >= session.capacity;
 
   return (
-    <article className="border rounded-sm bg-[rgb(248,255,216)]">
+    <article className="w-full rounded-sm bg-[rgb(248,255,216)]">
       <div className="flex">
         {/* Session Title */}
         <div className="p-2">
@@ -76,7 +76,7 @@ function SessionResult({ session, joined, onJoin }) {
       </div>
 
       {/* SessionMembers and StudyProfile */}
-      <div className="flex p-2 gap-2">
+      <div className="grid grid-cols-1 gap-4 p-2 lg:grid-cols-2">
         <SessionMembers members={session.members} capacity={session.capacity} />
         <div className="border-l border-dashed px-2 ml-auto">
           <StudyProfile session={session} />
@@ -103,7 +103,7 @@ function StudyProfile({ session }) {
 
 function SessionMembers({ members, capacity }) {
   return (
-    <section className="max-w-52">
+    <section className="min-w-0">
       <div className="flex flex-wrap gap-1 mt-1 mb-1">
         {members.map((name) => (
           <div key={name} className="flex gap-1">
