@@ -1,29 +1,17 @@
-//'use client'
-import TopBar from "@/components/TopBar";
-import PreferencesBar from "@/components/PreferencesBar";
-import ResultsDisplay from "@/components/ResultsDisplay";
-//import { useState } from 'react';
+import HomeClient from "@/components/HomeClient";
 import { getSessions } from "@/app/actions";
 
-export default async function Home({ searchParams }) {
-	//const [sessions, setSessions] = useState([]);
-	const params = await searchParams;
-	const prefs = {
-    capacity: params.capacity ?? "",
-    location: params.location ?? "",
-    course: params.course ?? "",
-    meetingTime: params.meetingTime ?? "",
+export default async function Home() {
+  const defaultPrefs = {
+    capacity: "",
+    location: "",
+    course: "",
+    meetingTime: "",
   };
 
-  const sessions = await getSessions(prefs);
+  const sessions = await getSessions(defaultPrefs);
 
   return (
-    <div className="app flex flex-col gap-4">
-      <TopBar />
-			<div className="flex">
-				<PreferencesBar preferences={prefs}/>
-      	<ResultsDisplay sessions={sessions}/>
-			</div>
-    </div>
+		<HomeClient initialSessions={sessions}></HomeClient>
   );
 }

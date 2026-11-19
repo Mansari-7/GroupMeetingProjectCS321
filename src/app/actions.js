@@ -16,10 +16,12 @@ export async function getSessions(prefs) {
 				+ CASE WHEN (@location = 'Online' AND Location = 'Online')
 										OR (@location = 'In Person' AND Location != 'Online')
 										OR (@location = '') THEN 20 ELSE 0 END
-				+ CASE WHEN CAST(substr(MeetingTime, 12, 2) AS INTEGER) = @hour
+				+ CASE WHEN (CAST(substr(MeetingTime, 12, 2) AS INTEGER) = @hour
+										AND substr(MeetingTime, 1, 11) = @day)
 										OR (@hour = -99) THEN 20
-								WHEN ABS(CAST(substr(MeetingTime, 12, 2) AS INTEGER) - @hour) = 1 THEN 10
-								ELSE 0 END
+									WHEN (ABS(CAST(substr(MeetingTime, 12, 2) AS INTEGER) - @hour) = 1
+										AND substr(MeetingTime, 1, 11) = @day) THEN 10
+									ELSE 0 END
 			) AS Compatibility
 		FROM SESSION_RESULT
 		ORDER BY Compatibility DESC
@@ -27,6 +29,7 @@ export async function getSessions(prefs) {
 		course: prefs.course,
 		capacity: Number(prefs.capacity),
 		location: prefs.location,
+		day: prefs.meetingTime ? prefs.meetingTime.slice(0,10) : "",
 		hour: prefs.meetingTime ? Number(prefs.meetingTime.slice(11, 13)) : -99
 	});
 

@@ -1,32 +1,25 @@
 "use client";
 
-//import { useState } from "react";
-//import { getSessions } from "@/app/actions";
+import { useState } from "react";
+import { getSessions } from "@/app/actions";
 
-export default function PreferencesBar({ preferences }) {
-  //const [preferences, setPreferences] = useState({
-  //  capacity: "",
-  //  location: "",
-  //  course: "",
-  //  meetingTime: "",
-  //});
+export default function PreferencesBar({ onSearch }) {
+  const [preferences, setPreferences] = useState({
+    capacity: "",
+    location: "",
+    course: "",
+    meetingTime: "",
+  });
 
-  //async function handleChange(event) {
-  //  const { name, value } = event.target;
+  async function handleChange(event) {
+    const { name, value } = event.target;
 
-	//	const newPreferences = {...preferences, [name]: value };
-  //  setPreferences(newPreferences);
+		const newPreferences = {...preferences, [name]: value };
+    setPreferences(newPreferences);
 
-	//	const sessions = await getSessions(newPreferences);
-	//	onSearch(sessions);
-  //}
-
-  //function handleSubmit(event) {
-  //  event.preventDefault();
-	//	const formData = new FormData(event.target);
-	//	const formValues = Object.fromEntries(formData.entries());
-	//	setPreferences(formValues);
-  //}
+		const sessions = await getSessions(newPreferences);
+		onSearch(sessions);
+  }
 
   return (
     <aside className="sidenav mr-4 flex flex-col gap-1">
@@ -34,15 +27,14 @@ export default function PreferencesBar({ preferences }) {
         <header>Preferences ⚙︎</header>
       </section>
 
-      <form onChange={(e)=>(e.currentTarget.requestSubmit())}>
+      <form>
         <section className="px-2 flex flex-col gap-0.5 mb-4">
           <label htmlFor="capacity">Capacity</label>
           <select
             name="capacity"
             id="capacity"
-            //value={preferences.capacity}
-            //onChange={handleChange}
-						defaultValue={preferences.capacity}
+            value={preferences.capacity}
+            onChange={handleChange}
           >
 						<option value="">Any</option>
             <option value="3">3 or less</option>
@@ -54,22 +46,20 @@ export default function PreferencesBar({ preferences }) {
           <select
             name="location"
             id="location"
-            //value={preferences.location}
-            //onChange={handleChange}
-						defaultValue={preferences.location}
+            value={preferences.location}
+            onChange={handleChange}
           >
 						<option value="">Any</option>
             <option value="In Person">In Person</option>
             <option value="Online">Online</option>
           </select>
 
-          <label htmlFor="course">Courses</label>
+          <label htmlFor="course">Course</label>
           <select
             name="course"
             id="course"
-            //value={preferences.course}
-            //onChange={handleChange}
-						defaultValue={preferences.course}
+            value={preferences.course}
+            onChange={handleChange}
           >
 						<option value="">Any</option>
             <option value="CS 110">CS 110</option>
@@ -99,17 +89,10 @@ export default function PreferencesBar({ preferences }) {
             type="datetime-local"
             name="meetingTime"
             id="meetingTime"
-            //value={preferences.meetingTime}
-            //onChange={handleChange}
-						defaultValue={preferences.meetingTime}
+            value={preferences.meetingTime}
+            onChange={handleChange}
           />
         </section>
-
-        {/*<section className="px-2 mt-2 mb-3">
-          <button type="submit" className="apply-button">
-            Apply
-          </button>
-        </section>*/}
       </form>
     </aside>
   );
