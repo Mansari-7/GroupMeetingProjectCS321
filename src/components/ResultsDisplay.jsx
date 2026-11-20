@@ -1,6 +1,5 @@
 "use client";
 import { joinSession, leaveSession } from "@/app/actions";
-import { useState } from "react";
 
 export default function ResultsDisplay({ sessions, onMemberChange }) {
   async function handleJoin(session) {
@@ -22,7 +21,7 @@ export default function ResultsDisplay({ sessions, onMemberChange }) {
   }
 
   return (
-    <main className="flex flex-col gap-2 overflow-y-auto h-screen">
+    <main className="flex flex-col gap-2 overflow-y-auto overflow-x-hidden w-full min-w-0">
       <span className="w-full items-end">
         <p className="px-2 font-bold">Results shown below.</p>
       </span>
