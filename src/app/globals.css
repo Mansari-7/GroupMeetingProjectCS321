@@ -59,7 +59,7 @@ p {
 	@apply max-w-32 h-full
 		bg-[rgb(248,255,216)]
 		text-sm;
-		width: 200px;
+		width: clamp(200px,1wv,400px);
 		flex-shrink: 0;
 		position: sticky;
 		top: 16px;
@@ -67,8 +67,8 @@ p {
 
 .sidenav select {
 	@apply border border-[rgb(162,199,83)]
-		bg-[rgb(224,233,183)] px-2.5 py-1.5
-		text-xs text-[rgb(54,65,3)]
+		bg-[rgb(224,233,183)] px-1.5 py-1.5
+		text-base text-[rgb(54,65,3)]
 		hover:bg-[rgb(191,200,152)]
 		active:translate-y-px active:shadow-none;
 
@@ -79,7 +79,7 @@ p {
 }
 
 body {
-  margin: 0;
+  margin: 10;
   min-height: 100vh;
   background: rgb(216,230,156);
 }

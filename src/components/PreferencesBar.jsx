@@ -28,7 +28,7 @@ export default function PreferencesBar({ onSearch }) {
       </section>
 
       <form>
-        <section className="px-2 flex flex-col gap-0.5 mb-4">
+        <section className="px-2 flex flex-col gap-3 mb-4">
           <label htmlFor="capacity">Capacity</label>
           <select
             name="capacity"
