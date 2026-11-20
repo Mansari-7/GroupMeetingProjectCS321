@@ -8,20 +8,20 @@ export async function getSessions(prefs) {
 			SessionID, SessionTitle, MeetingTime, Location, CourseName, StudyStyle, Capacity,
 			(
 				CASE WHEN CourseName = @course
-					OR (@course = '') THEN 40 ELSE 0 END
+							OR (@course = '') THEN 40 ELSE 0 END
 				+ CASE WHEN (@capacity = 3 AND Capacity <= 3)
-										OR (@capacity = 4 AND Capacity = 4)
-										OR (@capacity >= 5 AND Capacity >= 5)
-										OR (@capacity = 0) THEN 20 ELSE 0 END
+							OR (@capacity = 4 AND Capacity = 4)
+							OR (@capacity >= 5 AND Capacity >= 5)
+							OR (@capacity = 0) THEN 20 ELSE 0 END
 				+ CASE WHEN (@location = 'Online' AND Location = 'Online')
-										OR (@location = 'In Person' AND Location != 'Online')
-										OR (@location = '') THEN 20 ELSE 0 END
+							OR (@location = 'In Person' AND Location != 'Online')
+							OR (@location = '') THEN 20 ELSE 0 END
 				+ CASE WHEN (CAST(substr(MeetingTime, 12, 2) AS INTEGER) = @hour
-										AND substr(MeetingTime, 1, 10) = @day)
-										OR (@hour = -99) THEN 20
-									WHEN (ABS(CAST(substr(MeetingTime, 12, 2) AS INTEGER) - @hour) = 1
-										AND substr(MeetingTime, 1, 10) = @day) THEN 10
-									ELSE 0 END
+							AND substr(MeetingTime, 1, 10) = @day)
+							OR (@hour = -99) THEN 20
+						WHEN (ABS(CAST(substr(MeetingTime, 12, 2) AS INTEGER) - @hour) = 1
+							AND substr(MeetingTime, 1, 10) = @day) THEN 10
+						ELSE 0 END
 			) AS Compatibility
 		FROM SESSION_RESULT
 		ORDER BY Compatibility DESC
@@ -64,3 +64,14 @@ export async function getSessions(prefs) {
 	return sessions;
 }
 
+export async function joinSession(sessionID, newMember) {
+	db.prepare(`
+		INSERT INTO SESSION_MEMBER VALUES (?, ?)
+	`).run(sessionID, newMember);
+}
+
+export async function leaveSession(sessionID, memberToRemove) {
+	db.prepare(`
+		DELETE FROM SESSION_MEMBER WHERE SessionID = ? AND MemberName = ?
+	`).run(sessionID, memberToRemove);
+}

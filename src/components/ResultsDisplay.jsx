@@ -1,16 +1,17 @@
 "use client";
+import { joinSession, leaveSession } from "@/app/actions";
 import { useState } from "react";
 
-export default function ResultsDisplay({ sessions }) {
-  const [joinedIds, setJoinedIds] = useState([]);
-	sessions = sessions.map((session) =>
-		joinedIds.includes(session.id)
-		? {...session, members: [...session.members, "You"]}
-		: session
-	);
-  const handleJoin = (id) => {
-    setJoinedIds([...joinedIds, id]);
-  };
+export default function ResultsDisplay({ sessions, onMemberChange }) {
+  async function handleJoin(session) {
+    await joinSession(session.id, "You");
+    onMemberChange(session.id, [...session.members, "You"]);
+  }
+
+  async function handleLeave(session) {
+    await leaveSession(session.id, "You");
+    onMemberChange(session.id, session.members.filter((name) => name !== "You"));
+  }
 
   if (sessions.length == 0) {
     return (
@@ -29,15 +30,16 @@ export default function ResultsDisplay({ sessions }) {
         <SessionResult
           key={session.id}
           session={session}
-          joined={joinedIds.includes(session.id)}
-          onJoin={() => handleJoin(session.id)}
+          onJoin={() => handleJoin(session)}
+					onLeave={() => handleLeave(session)}
         />
       ))}
     </main>
   );
 }
 
-function SessionResult({ session, joined, onJoin }) {
+function SessionResult({ session, onJoin, onLeave }) {
+	const joined = session.members.includes("You");
 	const isFull = session.members.length >= session.capacity;
 
   return (
@@ -61,7 +63,16 @@ function SessionResult({ session, joined, onJoin }) {
           <p className="ml-auto mt-2">{session.compatibility}% Match</p>
 
           {joined ? (
-            <p className="ml-auto text-sm font-semibold text-[#315510]">✔ Joined</p>
+						<div>
+							<button
+								type="button"
+								onClick={onLeave}
+								className="join-button"
+							>
+								Leave
+							</button>
+							<p className="ml-auto text-sm font-semibold text-[#315510]">✔ Joined</p>
+						</div>
           ) : (
 						<button
 							type="button"
@@ -103,7 +114,7 @@ function StudyProfile({ session }) {
 
 function SessionMembers({ members, capacity }) {
   return (
-    <section className="max-w-52">
+    <section>
       <div className="flex flex-wrap gap-1 mt-1 mb-1">
         {members.map((name) => (
           <div key={name} className="flex gap-1">
