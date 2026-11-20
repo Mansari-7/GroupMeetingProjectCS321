@@ -12,10 +12,12 @@ export default function HomeClient({ initialSessions }) {
 	}
 
 	return (
-		<div className="app flex flex-col gap-4">
+		<div className="app flex flex-col gap-4 h-screen">
 			<TopBar />
-			<div className="flex">
-				<PreferencesBar onSearch={setSessions}/>
+			<div className="flex min-h-0 pb-2">
+				<div className="self-start">
+					<PreferencesBar onSearch={setSessions}/>
+				</div>
 				<ResultsDisplay sessions={sessions} onMemberChange={changeMembers}/>
 			</div>
 		</div>

@@ -71,7 +71,7 @@ body {
 }
 
 .app {
-	@apply bg-[rgb(216,230,156)] p-4
+	@apply bg-[rgb(216,230,156)] py-4 px-16 w-full
 }
 
 /*The cursor changes when the user hovers over an object that can be selected.*/
