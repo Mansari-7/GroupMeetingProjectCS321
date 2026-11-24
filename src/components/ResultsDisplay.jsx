@@ -21,7 +21,7 @@ export default function ResultsDisplay({ sessions, onMemberChange }) {
   }
 
   return (
-    <main className="flex flex-col gap-2 overflow-y-auto overflow-x-hidden w-full min-w-0">
+    <main className="flex flex-col gap-2 overflow-y-auto">
       <span className="w-full items-end">
         <p className="px-2 font-bold">Results shown below.</p>
       </span>
@@ -98,16 +98,16 @@ function SessionResult({ session, onJoin, onLeave }) {
 
 function StudyProfile({ session }) {
   return (
-    <dl className="grid grid-cols-[auto_1fr] gap-x-5">
-      <dt className="font-bold text-gray-600"><p>Subject</p></dt>
-      <dd className="text-right"><p>{session.course.replace(" ", "")}</p></dd>
+    <div className="grid grid-cols-[auto_1fr] gap-x-5">
+      <p className="font-bold text-gray-600">Subject</p>
+      <p className="text-right">{session.course.replace(" ", "")}</p>
 
-      <dt className="font-bold text-gray-600"><p>Style</p></dt>
-      <dd className="text-right"><p>{session.style}</p></dd>
+      <p className="font-bold text-gray-600">Style</p>
+      <p className="text-right">{session.style}</p>
 
-      <dt className="font-bold text-gray-600"><p>Topics</p></dt>
-      <dd className="text-right"><p>{session.topics}</p></dd>
-    </dl>
+      <p className="font-bold text-gray-600">Topics</p>
+      <p className="text-right">{session.topics}</p>
+    </div>
   );
 }
 
