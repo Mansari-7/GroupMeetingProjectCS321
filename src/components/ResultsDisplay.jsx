@@ -98,7 +98,7 @@ function SessionResult({ session, onJoin, onLeave }) {
 
 function StudyProfile({ session }) {
   return (
-    <div className="grid grid-cols-[auto_1fr] gap-x-5">
+    <div className="grid grid-cols-[auto_1fr] gap-x-5 w-36">
       <p className="font-bold text-gray-600">Subject</p>
       <p className="text-right">{session.course.replace(" ", "")}</p>
 
@@ -113,7 +113,7 @@ function StudyProfile({ session }) {
 
 function SessionMembers({ members, capacity }) {
   return (
-    <section>
+    <section className="mr-2">
       <div className="flex flex-wrap gap-1 mt-1 mb-1">
         {members.map((name) => (
           <div key={name} className="flex gap-1">
